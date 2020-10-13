@@ -43,6 +43,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Class1.cs" />
+    <Compile Include="Model\ProductV2.cs" />
+    <Compile Include="Model\Product\AccessNum.cs" />
+    <Compile Include="Model\Product\ChangeApiToServiceResponse.cs" />
+    <Compile Include="Model\Product\ChangeProductPrice.cs" />
+    <Compile Include="Model\Product\ChangeProductPriceResponse.cs" />
+    <Compile Include="Model\Product\ChangeSaleStatus.cs" />
+    <Compile Include="Model\Product\ChangeSaleStatusResponse.cs" />
+    <Compile Include="Model\Product\FrontendProductCategoryOfFormIDsRequestModel.cs" />
+    <Compile Include="Model\Product\FrontendProductCategoryOfFormIDsResponseModel.cs" />
+    <Compile Include="Model\Product\Product.cs" />
+    <Compile Include="Model\Product\ProductFormSpecRequest.cs" />
+    <Compile Include="Model\Product\ProductFormSpecResponse.cs" />
+    <Compile Include="Model\Product\ProductQuery.cs" />
+    <Compile Include="Model\Product\ProductQueryResponse.cs" />
+    <Compile Include="Model\Product\ProductResponse.cs" />
+    <Compile Include="Model\Product\ProductSpecQuyery.cs" />
+    <Compile Include="Model\Product\ProductSpecResponse.cs" />
+    <Compile Include="Model\ShipManage\ChangeSaleStatusResponse.cs" />
+    <Compile Include="Model\ShipManage\ChangeShipStatusRequest.cs" />
+    <Compile Include="Model\ShipManage\SearchRequest.cs" />
+    <Compile Include="Model\ShipManage\SearchResponse.cs" />
+    <Compile Include="Model\Token\GetTokenResponse.cs" />
+    <Compile Include="Model\Token\GetUserByUserInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />
-    <Folder Include="Model\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,6 +20,12 @@ namespace SCM.Api.Example.Service
         private Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
         private string userName = "使用者帳號";
         private string password = "使用者密碼";
+        /// <summary>
+        /// 寫入待審規格表
+        /// </summary>
+        public InsertFormSpecService()
+        {
+        }
         public void DoFlow()
         {
             //1	  取得Token	        https://redapi.etzone.net/o/Token

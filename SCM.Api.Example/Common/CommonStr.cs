@@ -20,9 +20,27 @@ namespace SCM.Api.Example.Common
         /// <summary>
         /// Header setting
         /// </summary>
-        public struct Header {
+        public struct Header
+        {
             public static string auth = "Authorization";
         }
+
+        /// <summary>
+        /// 使用者資訊
+        /// </summary>
+        public struct UserInfo
+        {
+            /// <summary>
+            /// 帳號
+            /// </summary>
+            public static string userName = "使用者帳號";
+            /// <summary>
+            /// 密碼
+            /// </summary>
+            public static string password = "使用者密碼";
+        }
+
+
         public struct Product
         {
             /// <summary>

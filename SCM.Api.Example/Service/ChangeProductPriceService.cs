@@ -18,8 +18,8 @@ namespace SCM.Api.Example.Service
         private string targetUrl = CommonStr.TargetUrl;
         private GetTokenResponse getTokenResponse;
         private Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
-        private string userName = "使用者帳號";
-        private string password = "使用者密碼";
+        private string userName = CommonStr.UserInfo.userName;
+        private string password = CommonStr.UserInfo.password;
         /// <summary>
         /// 商品變價
         /// </summary>

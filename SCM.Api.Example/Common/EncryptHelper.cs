@@ -17,6 +17,8 @@ namespace SCM.Api.Example.Common
         {
 
             var tarrgetStr = "要加密的字串";
+            var 廠商統編 = "12345678";
+            var 我們提供的ApiSecureKey = "ee13d27bfdc04bfbb1b6faa4ef046444";
             //加解密範例(測試區)
             var encode_string = encode("31244190", tarrgetStr);
             var decode_string = decode("31244190", encode_string);
@@ -28,8 +30,8 @@ namespace SCM.Api.Example.Common
             //範例1:正式區上線
             //      假如你的統編為12345678
             //	我們提供的ApiSecureKey 為ee13d27bfdc04bfbb1b6faa4ef046444
-            var encode_string_normal_withkey = encode("12345678ee13d27bfdc04bfbb1b6faa4ef046444", tarrgetStr);
-            var decode_string_normal_withkey = decode("12345678ee13d27bfdc04bfbb1b6faa4ef046444", encode_string);
+            var encode_string_normal_withkey = encode($"{廠商統編}{我們提供的ApiSecureKey}", tarrgetStr);
+            var decode_string_normal_withkey = decode($"{廠商統編}{我們提供的ApiSecureKey}", encode_string);
         }
 
         /// <summary>

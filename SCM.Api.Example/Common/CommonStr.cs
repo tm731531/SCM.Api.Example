@@ -13,7 +13,7 @@ namespace SCM.Api.Example.Common
         /// </summary>
         public static string Token = "Token";
         /// <summary>
-        /// 取得Token
+        /// Target Url
         /// </summary>
         public static string TargetUrl = "https://redapi.etzone.net/o/";
 
@@ -87,8 +87,5 @@ namespace SCM.Api.Example.Common
             /// </summary>
             public static string Search = "api/ShipManage/Search";
         }
-
-
-
     }
 }

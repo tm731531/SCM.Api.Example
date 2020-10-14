@@ -13,25 +13,25 @@ namespace SCM.Api.Example.Common
         /// <summary>
         /// 出貨管理查詢加解密(ShipManage/Search)
         /// </summary>
-        public static void doTest()
+        public static void DoTest()
         {
 
             var tarrgetStr = "要加密的字串";
             var 廠商統編 = "31244190";
             var 我們提供的ApiSecureKey = "ee13d27bfdc04bfbb1b6faa4ef046444";
             //加解密範例(測試區)
-            var encode_string = encode($"{廠商統編}", tarrgetStr);
-            var decode_string = decode($"{廠商統編}", encode_string);
+            var encode_string = Encode($"{廠商統編}", tarrgetStr);
+            var decode_string = Decode($"{廠商統編}", encode_string);
 
             //加解密範例(正式區)
-            var encode_string_normal = encode("廠商統編+我們提供的ApiSecureKey", tarrgetStr);
-            var decode_string_normal = decode("廠商統編+我們提供的ApiSecureKey", encode_string);
+            var encode_string_normal = Encode("廠商統編+我們提供的ApiSecureKey", tarrgetStr);
+            var decode_string_normal = Decode("廠商統編+我們提供的ApiSecureKey", encode_string);
 
             //範例1:正式區上線
             //      假如你的統編為 31244190
             //	我們提供的ApiSecureKey 為ee13d27bfdc04bfbb1b6faa4ef046444
-            var encode_string_normal_withkey = encode($"{廠商統編}{我們提供的ApiSecureKey}", tarrgetStr);
-            var decode_string_normal_withkey = decode($"{廠商統編}{我們提供的ApiSecureKey}", encode_string);
+            var encode_string_normal_withkey = Encode($"{廠商統編}{我們提供的ApiSecureKey}", tarrgetStr);
+            var decode_string_normal_withkey = Decode($"{廠商統編}{我們提供的ApiSecureKey}", encode_string);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace SCM.Api.Example.Common
         /// </summary>
         /// <param name="unicode">公司統編</param>
         /// <param name="str">要加密的字串</param>
-        public static string encode(string company_id, string str)
+        public static string Encode(string company_id, string str)
         {
             string encryptKey = company_id;
 
@@ -63,7 +63,7 @@ namespace SCM.Api.Example.Common
         /// <param name="company_id">公司統編</param>
         /// <param name="encode_string">要解密的字串</param>
         /// <returns></returns>
-        public static string decode(string company_id, string encode_string)
+        public static string Decode(string company_id, string encode_string)
         {
             string encryptKey = company_id;
 

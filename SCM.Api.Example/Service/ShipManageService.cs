@@ -16,7 +16,7 @@ namespace SCM.Api.Example.Service
 
         private GetUserByUserInfo getUserByUserInfo;
         private HttpHelper httpHelper = new HttpHelper();
-        private string targetUrl = "https://redapi.etzone.net/o/";
+        private string targetUrl = CommonStr.TargetUrl;
         private GetTokenResponse getTokenResponse;
         private Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
         private string userName = "使用者帳號";
@@ -29,9 +29,9 @@ namespace SCM.Api.Example.Service
         }
         public void DoFlow()
         {
-            //1	  取得Token	            https://redapi.etzone.net/o/Token
-            //2   變更出貨狀態          https://redapi.etzone.net/o/api/ShipManage/ChangeShipStatus
-            //3   查詢出貨狀態(檢查)    https://redapi.etzone.net/o/api/ShipManage/Search
+            //1	  取得Token	            Token
+            //2   變更出貨狀態          api/ShipManage/ChangeShipStatus
+            //3   查詢出貨狀態(檢查)    api/ShipManage/Search
 
             getUserByUserInfo = new GetUserByUserInfo() { password = password, userName = userName };
             getTokenResponse = GetToken();

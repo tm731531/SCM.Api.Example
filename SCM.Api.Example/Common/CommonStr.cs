@@ -13,6 +13,11 @@ namespace SCM.Api.Example.Common
         /// </summary>
         public static string Token = "Token";
         /// <summary>
+        /// 取得Token
+        /// </summary>
+        public static string TargetUrl = "https://redapi.etzone.net/o/";
+
+        /// <summary>
         /// Header setting
         /// </summary>
         public struct Header {

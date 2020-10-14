@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SCM.Api.Example.Model
+namespace SCM.Api.Example.Model.Product
 {
     public class ProductV2
     {
         public int productSpecFormID { get; set; }
         public int productProperty { get; set; }
-        public List<Spec> specs { get; set; }
+        public List<ProductV2Spec> specs { get; set; }
         public int type { get; set; }
         public string formerSaleCode { get; set; }
         public string fugoItemType { get; set; }
@@ -43,17 +43,17 @@ namespace SCM.Api.Example.Model
         public int preorderShipDays { get; set; }
         public string productType { get; set; }
         public int eType { get; set; }
-        public List<Accessednum> accessedNum { get; set; }
+        public List<ProductV2Accessednum> accessedNum { get; set; }
         public int isFragile { get; set; }
     }
 
-    public class Spec
+    public class ProductV2Spec
     {
         public string specID { get; set; }
         public string specValue { get; set; }
     }
 
-    public class Accessednum
+    public class ProductV2Accessednum
     {
         public string colorName { get; set; }
         public string styleName { get; set; }

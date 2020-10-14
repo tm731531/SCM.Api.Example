@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SCM.Api.Example.Service
 {
-    public class ModifyProductService : IWorkflow
+    public class ChangePANService : IWorkflow
     {
 
         private GetUserByUserInfo getUserByUserInfo;
@@ -23,14 +23,12 @@ namespace SCM.Api.Example.Service
         public void DoFlow()
         {
             //1	  取得Token	        https://redapi.etzone.net/o/Token
-            //2   查詢規格表        https://redapi.etzone.net/o/api/Product/ProductSpecCacheLookup
-            //3   修改 V2           https://redapi.etzone.net/o/api/Product/SaleSKU/v2
-            //4   商品查詢(檢查)    https://redapi.etzone.net/o/api/Product/ProductQuery
+            //2   商品變量          https://redapi.etzone.net/o/api/Product/AccessedNum
+            //3   商品查詢(檢查)    https://redapi.etzone.net/o/api/Product/ProductQuery
 
             getUserByUserInfo = new GetUserByUserInfo() { password = password, userName = userName };
             getTokenResponse = GetToken();
-            GetProductSpecCacheLookup();
-            GetProductV2();
+            GetAccessedNum();
             GetProductQuery();
         }
         /// <summary>
@@ -45,36 +43,16 @@ namespace SCM.Api.Example.Service
             return httpHelper.PostData<GetTokenResponse, GetUserByUserInfo>($"{targetUrl}{CommonStr.Token}", getUserByUserInfo, keyValuePairs);
         }
        
-        /// <summary>
-        /// 查詢規格表
-        /// </summary>
-        /// <returns></returns>
-        private ProductSpecResponse GetProductSpecCacheLookup()
+         private ChangeApiToServiceResponse GetAccessedNum()
         {
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductSpecQuyery productSpecQuyery = new ProductSpecQuyery();
+            AccessNum accessNum = new AccessNum();
             ///打API
-            return httpHelper.PostData<ProductSpecResponse, ProductSpecQuyery>
-                ($"{targetUrl}{CommonStr.Product.ProductSpecCacheLookup}"
-                , productSpecQuyery
-                , keyValuePairs);
-        }
-        /// <summary>
-        /// 新增 V2 
-        /// </summary>
-        /// <returns></returns>
-        private ProductResponse GetProductV2()
-        {
-            ///設定Token
-            keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
-            ///塞入資料
-            ProductV2 productV2 = new ProductV2();
-            ///打API
-            return httpHelper.PostData<ProductResponse, ProductV2>
-                ($"{targetUrl}{CommonStr.Product.SaleSKUV2}"
-                , productV2
+            return httpHelper.PostData<ChangeApiToServiceResponse, AccessNum>
+                ($"{targetUrl}{CommonStr.Product.AccessedNum}"
+                , accessNum
                 , keyValuePairs);
         }
         /// <summary>
@@ -89,7 +67,7 @@ namespace SCM.Api.Example.Service
             ProductQuery productQuyery = new ProductQuery();
             ///打API
             return httpHelper.PostData<ProductQueryResponse, ProductQuery>
-                ($"{targetUrl}{CommonStr.Product.ProductQuery}"
+                ($"{targetUrl}{CommonStr.Product.ProductSpecCacheLookup}"
                 , productQuyery
                 , keyValuePairs);
         }

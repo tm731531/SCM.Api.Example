@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SCM.Api.Example.Service
 {
-    public class NewProductService : IWorkflow
+    public class InsertFormSpecService : IWorkflow
     {
 
         private GetUserByUserInfo getUserByUserInfo;
@@ -23,16 +23,14 @@ namespace SCM.Api.Example.Service
         public void DoFlow()
         {
             //1	  取得Token	        https://redapi.etzone.net/o/Token
-            //2   查詢前台分類      https://redapi.etzone.net/o/api/Product/FrontendProductCategoryOfFormIDsQuery
-            //3   查詢規格表        https://redapi.etzone.net/o/api/Product/ProductSpecCacheLookup
-            //4   新增 V2           https://redapi.etzone.net/o/api/Product/SaleSKU/v2
-            //5   商品查詢(檢查)    https://redapi.etzone.net/o/api/Product/ProductQuery
+            //2   查詢規格表        https://redapi.etzone.net/o/api/Product/ProductSpecCacheLookup
+            //3   填寫規格表內容    https://redapi.etzone.net/o/api/Product/InsertProductFormSpec
+            //4   商品查詢(檢查)    https://redapi.etzone.net/o/api/Product/ProductQuery
 
             getUserByUserInfo = new GetUserByUserInfo() { password = password, userName = userName };
             getTokenResponse = GetToken();
-            GetFrontendProductCategoryOfFormIDsQuery();
             GetProductSpecCacheLookup();
-            GetProductV2();
+            GetInsertProductFormSpec();
             GetProductQuery();
         }
         /// <summary>
@@ -46,22 +44,7 @@ namespace SCM.Api.Example.Service
             ///打API
             return httpHelper.PostData<GetTokenResponse, GetUserByUserInfo>($"{targetUrl}{CommonStr.Token}", getUserByUserInfo, keyValuePairs);
         }
-        /// <summary>
-        /// 查詢前台分類
-        /// </summary>
-        /// <returns></returns>
-        private FrontendProductCategoryOfFormIDsResponseModel GetFrontendProductCategoryOfFormIDsQuery()
-        {
-            ///設定Token
-            keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
-            ///塞入資料
-            FrontendProductCategoryOfFormIDsRequestModel frontendProductCategoryOfFormIDsRequestModel = new FrontendProductCategoryOfFormIDsRequestModel();
-            ///打API
-            return httpHelper.PostData<FrontendProductCategoryOfFormIDsResponseModel, FrontendProductCategoryOfFormIDsRequestModel>
-                ($"{targetUrl}{CommonStr.Product.FrontendProductCategoryOfFormIDsQuery}"
-                , frontendProductCategoryOfFormIDsRequestModel
-                , keyValuePairs);
-        }
+       
         /// <summary>
         /// 查詢規格表
         /// </summary>
@@ -79,19 +62,19 @@ namespace SCM.Api.Example.Service
                 , keyValuePairs);
         }
         /// <summary>
-        /// 新增 V2 
+        /// 填寫規格表內容 
         /// </summary>
         /// <returns></returns>
-        private ProductResponse GetProductV2()
+        private ProductFormSpecResponse GetInsertProductFormSpec()
         {
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductV2 productV2 = new ProductV2();
+            ProductFormSpecRequest productFormSpecRequest = new ProductFormSpecRequest();
             ///打API
-            return httpHelper.PostData<ProductResponse, ProductV2>
-                ($"{targetUrl}{CommonStr.Product.SaleSKUV2}"
-                , productV2
+            return httpHelper.PostData<ProductFormSpecResponse, ProductFormSpecRequest>
+                ($"{targetUrl}{CommonStr.Product.InsertProductFormSpec}"
+                , productFormSpecRequest
                 , keyValuePairs);
         }
         /// <summary>
@@ -106,7 +89,7 @@ namespace SCM.Api.Example.Service
             ProductQuery productQuyery = new ProductQuery();
             ///打API
             return httpHelper.PostData<ProductQueryResponse, ProductQuery>
-                ($"{targetUrl}{CommonStr.Product.ProductQuery}"
+                ($"{targetUrl}{CommonStr.Product.ProductSpecCacheLookup}"
                 , productQuyery
                 , keyValuePairs);
         }

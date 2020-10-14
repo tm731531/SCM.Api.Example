@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CommonStr.cs" />
+    <Compile Include="Common\EncryptHelper.cs" />
     <Compile Include="Common\HttpHelper.cs" />
     <Compile Include="Interface\IWorkflow.cs" />
     <Compile Include="Model\Class1.cs" />

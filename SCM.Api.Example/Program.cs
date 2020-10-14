@@ -13,13 +13,13 @@ namespace SCM.Api.Example
         static void Main(string[] args)
         {
             List<IWorkflow> workflows = new List<IWorkflow>();
-            workflows.Add(new ChangePANService());  
-            workflows.Add(new ChangeProductPriceService());  
-            workflows.Add(new ChangeSaleStatusService());    
-            workflows.Add(new InsertFormSpecService());
-            workflows.Add(new ModifyProductService());
             workflows.Add(new NewProductService());
-            workflows.Add(new ShipManageService());
+            //workflows.Add(new ChangePANService());  
+            //workflows.Add(new ChangeProductPriceService());  
+            //workflows.Add(new ChangeSaleStatusService());    
+            //workflows.Add(new InsertFormSpecService());
+            //workflows.Add(new ModifyProductService());
+            //workflows.Add(new ShipManageService());
 
             foreach (var work in workflows) {
                 work.DoFlow();

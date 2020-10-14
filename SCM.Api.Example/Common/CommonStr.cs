@@ -33,11 +33,11 @@ namespace SCM.Api.Example.Common
             /// <summary>
             /// 帳號
             /// </summary>
-            public static string userName = "使用者帳號";
+            public static string userName = "31244190";
             /// <summary>
             /// 密碼
             /// </summary>
-            public static string password = "使用者密碼";
+            public static string password = "123456";
         }
 
 

@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 namespace SCM.Api.Example.Model.ShipManage
 {
 
-    public class ChangeSaleStatusResponse
+
+    public class ChangeShipStatusResponse
     {
+        public int totalCount { get; set; }
+        public int successCount { get; set; }
+        public int failCount { get; set; }
         public string success { get; set; }
         public string desc { get; set; }
         public List<ChangeSaleStatusReportDataModel> data { get; set; }
@@ -16,12 +20,9 @@ namespace SCM.Api.Example.Model.ShipManage
 
     public class ChangeSaleStatusReportDataModel
     {
-        public string formerSaleCode { get; set; }
-        public string fugoSaleNo { get; set; }
-        public string changeResult { get; set; }
-        public string originalSaleStatus { get; set; }
-        public string changeSaleStatus { get; set; }
+        public int orderID { get; set; }
+        public int itemID { get; set; }
+        public string errorMessage { get; set; }
     }
-
 
 }

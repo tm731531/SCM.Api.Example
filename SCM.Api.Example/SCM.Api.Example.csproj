@@ -59,6 +59,7 @@
     <Compile Include="Common\HttpHelper.cs" />
     <Compile Include="Interface\IWorkflow.cs" />
     <Compile Include="Model\Class1.cs" />
+    <Compile Include="Model\ErrorModel.cs" />
     <Compile Include="Model\Product\ProductV2.cs" />
     <Compile Include="Model\Product\AccessNum.cs" />
     <Compile Include="Model\Product\ChangeApiToServiceResponse.cs" />

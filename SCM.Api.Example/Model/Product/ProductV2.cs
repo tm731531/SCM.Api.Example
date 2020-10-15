@@ -8,7 +8,7 @@ namespace SCM.Api.Example.Model.Product
 {
     public class ProductV2
     {
-        public int productSpecFormID { get; set; }
+        public int? productSpecFormID { get; set; }
         public int productProperty { get; set; }
         public List<ProductV2Spec> specs { get; set; }
         public int type { get; set; }

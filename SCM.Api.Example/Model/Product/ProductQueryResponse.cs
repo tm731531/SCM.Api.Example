@@ -35,8 +35,8 @@ namespace SCM.Api.Example.Model.Product
         public string deliveryWay { get; set; }
         public bool fetchFromSupermarket { get; set; }
         public bool isPreorder { get; set; }
-        public DateTime preorderShipDate { get; set; }
-        public int preorderShipDays { get; set; }
+        public DateTime? preorderShipDate { get; set; }
+        public int? preorderShipDays { get; set; }
         public int length { get; set; }
         public int width { get; set; }
         public int height { get; set; }

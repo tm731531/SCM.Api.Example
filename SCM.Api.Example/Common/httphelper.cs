@@ -19,9 +19,9 @@ namespace SCM.Api.Example.Common
         {
             return GetData<T>(new Uri(url), header);
         }
-        public T PostData<T,T1>(string url, T1 Data, Dictionary<string, string> header = null)
+        public T PostData<T, T1>(string url, T1 Data, Dictionary<string, string> header = null)
         {
-            return PostData<T, T1>(new Uri(url),  Data, header);
+            return PostData<T, T1>(new Uri(url), Data, header);
         }
         public string GetData(string url, Dictionary<string, string> header = null)
         {
@@ -50,16 +50,18 @@ namespace SCM.Api.Example.Common
         {
             try
             {
-                string responseData = HttpPost<T1>(url,  Data, header);
+                string responseData = HttpPost<T1>(url, Data, header);
                 var Tobject = JsonConvert.DeserializeObject<T>(responseData); ;
                 errorCount = 0;
                 return Tobject;
             }
-            catch (JsonException)
+            catch (JsonException ex)
             {
-                if (errorCount == 10) { return default(T); }
+                //               if (errorCount == 10) { return default(T); }
                 errorCount++;
-                return PostData<T, T1>(url ,Data, header);
+                //return PostData<T, T1>(url ,Data, header);
+                return default(T);
+
             }
         }
 
@@ -102,7 +104,7 @@ namespace SCM.Api.Example.Common
             return responseData;
         }
 
-        private string HttpPost<T1>(Uri uri, T1 Data,  Dictionary<string, string> header = null)
+        private string HttpPost<T1>(Uri uri, T1 Data, Dictionary<string, string> header = null)
         {
             Thread.Sleep(1000);
             string responseData = "";
@@ -114,8 +116,8 @@ namespace SCM.Api.Example.Common
                     httpClient.Timeout = TimeSpan.FromSeconds(5);
                     string json = JsonConvert.SerializeObject(Data);
                     HttpContent contentPost = new StringContent(json, Encoding.UTF8, "application/json");
-                    HttpResponseMessage response = httpClient.PostAsync(uri, contentPost).GetAwaiter().GetResult();
-                    responseData= response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    HttpResponseMessage response = httpClient.PostAsync(uri, contentPost).Result;//.GetAwaiter().GetResult();
+                    responseData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                 }
             }
             catch (AggregateException ex)

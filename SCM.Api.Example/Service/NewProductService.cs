@@ -61,7 +61,14 @@ namespace SCM.Api.Example.Service
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            FrontendProductCategoryOfFormIDsRequestModel frontendProductCategoryOfFormIDsRequestModel = new FrontendProductCategoryOfFormIDsRequestModel();
+            FrontendProductCategoryOfFormIDsRequestModel frontendProductCategoryOfFormIDsRequestModel = new FrontendProductCategoryOfFormIDsRequestModel()
+            {
+                     categoryId = 16462,
+                //       categoryName = string.Empty,
+                categoryRootName = "民生日用",
+                platform = 2,
+       //         status = "上架中"
+            };
             ///打API
             return httpHelper.PostData<FrontendProductCategoryOfFormIDsResponseModel, FrontendProductCategoryOfFormIDsRequestModel>
                 ($"{targetUrl}{CommonStr.Product.FrontendProductCategoryOfFormIDsQuery}"
@@ -77,7 +84,12 @@ namespace SCM.Api.Example.Service
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductSpecQuyery productSpecQuyery = new ProductSpecQuyery();
+            ProductSpecQuyery productSpecQuyery = new ProductSpecQuyery()
+            {
+                specType = 1,
+                productSpecFormID = new List<int>() { 14},
+                formerSaleCode = new List<string>()
+            };
             ///打API
             return httpHelper.PostData<ProductSpecResponse, ProductSpecQuyery>
                 ($"{targetUrl}{CommonStr.Product.ProductSpecCacheLookup}"
@@ -93,11 +105,60 @@ namespace SCM.Api.Example.Service
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductV2 productV2 = new ProductV2();
+            List<ProductV2> lp = new List<ProductV2>();
+            lp.Add(new ProductV2()
+            {
+                productSpecFormID = 14,
+                productProperty = 1,
+                type = 0,
+                formerSaleCode = "20180409099",
+                fugoItemType = "1001",
+                saleName = "111111",
+                prdDesPlanner = "1111111111111",
+                marketPrice = 1000,
+                costPrice = 900,
+                salePrice = 950,
+                taxType = 0,
+                deliveryWay = "2",
+                mainImgUrls = new List<string>() {
+                    "http://www.mohist.com.tw/images/new191025/goodpay1.jpg" ,
+                "https://img.ltn.com.tw/Upload/3c/page/2019/08/08/190808-37645-1.jpg" ,
+                "https://img.ltn.com.tw/Upload/3c/page/2019/08/08/190808-37645-1.jpg" ,
+                "https://img.ltn.com.tw/Upload/3c/page/2019/08/08/190808-37645-1.jpg" },
+                contentData = "12345",
+                productSpec = "13431",
+                attentionItem = "12121",
+                useMethod = "12331",
+                uFrontendID = 5718,
+                etFrontendID = 22878,
+
+                packageLength = 1,
+                packageWidth = 1,
+                packageHeight = 1,
+                weight = 1,
+                isPreorder = 0,
+                eType = 1,
+                isFragile = 0,
+                accessedNum = new List<ProductV2Accessednum>() {
+                    new ProductV2Accessednum() { colorName="共同", styleName="共同"
+                } },
+                expirationDate= DateTime.Now.AddDays(30),
+                onShelf = DateTime.Now.AddDays(1),
+                specs = new List<ProductV2Spec>() {
+                    new ProductV2Spec() { specID = "543", specValue = "3470" } ,
+                    new ProductV2Spec() { specID = "544", specValue = "1028" } ,
+                    new ProductV2Spec() { specID = "546", specValue = "3509" } ,
+                    new ProductV2Spec() { specID = "545", specValue = "3118" } ,
+                    new ProductV2Spec() { specID = "547", specValue = "2649" } ,
+                    new ProductV2Spec() { specID = "569", specValue = "5397" } ,
+                    new ProductV2Spec() { specID = "219", specValue = "3L" } ,
+                    new ProductV2Spec() { specID = "218", specValue = "3" } ,},
+
+            }); ;
             ///打API
-            return httpHelper.PostData<ProductResponse, ProductV2>
+            return httpHelper.PostData<ProductResponse, List<ProductV2>>
                 ($"{targetUrl}{CommonStr.Product.SaleSKUV2}"
-                , productV2
+                , lp
                 , keyValuePairs);
         }
         /// <summary>
@@ -109,7 +170,13 @@ namespace SCM.Api.Example.Service
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductQuery productQuyery = new ProductQuery();
+            ProductQuery productQuyery = new ProductQuery()
+            {
+                queryType = 1,
+                page = 1,
+                pageSize = 500,
+                deliveryWay = 2
+            };
             ///打API
             return httpHelper.PostData<ProductQueryResponse, ProductQuery>
                 ($"{targetUrl}{CommonStr.Product.ProductQuery}"

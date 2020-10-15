@@ -73,7 +73,13 @@ namespace SCM.Api.Example.Service
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductQuery productQuyery = new ProductQuery();
+            ProductQuery productQuyery = new ProductQuery()
+            {
+                queryType = 1,
+                page = 1,
+                pageSize = 500,
+                deliveryWay = 2
+            };
             ///打API
             return httpHelper.PostData<ProductQueryResponse, ProductQuery>
                 ($"{targetUrl}{CommonStr.Product.ProductSpecCacheLookup}"

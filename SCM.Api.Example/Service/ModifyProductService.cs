@@ -132,9 +132,9 @@ namespace SCM.Api.Example.Service
 
             }); ;
             ///打API
-            return httpHelper.PostData<ProductResponse, ProductV2>
+            return httpHelper.PostData<ProductResponse, List<ProductV2>>
                 ($"{targetUrl}{CommonStr.Product.SaleSKUV2}"
-                , productV2
+                , lp
                 , keyValuePairs);
         }
         /// <summary>

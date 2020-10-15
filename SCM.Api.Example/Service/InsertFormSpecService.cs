@@ -81,7 +81,21 @@ namespace SCM.Api.Example.Service
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductFormSpecRequest productFormSpecRequest = new ProductFormSpecRequest();
+            ProductFormSpecRequest productFormSpecRequest = new ProductFormSpecRequest() { 
+             productSpecFormID=14,
+              specs = new List<ProductFormSpecRequestSpec>() { 
+                  new ProductFormSpecRequestSpec() { specID = "543", specValue = "3470" },
+                    new ProductFormSpecRequestSpec() { specID = "544", specValue = "1028" } ,
+                    new ProductFormSpecRequestSpec() { specID = "546", specValue = "3509" } ,
+                    new ProductFormSpecRequestSpec() { specID = "545", specValue = "3118" } ,
+                    new ProductFormSpecRequestSpec() { specID = "547", specValue = "2649" } ,
+                    new ProductFormSpecRequestSpec() { specID = "569", specValue = "5397" } ,
+                    new ProductFormSpecRequestSpec() { specID = "219", specValue = "3L" } ,
+                    new ProductFormSpecRequestSpec() { specID = "218", specValue = "3" } ,},
+               specType=0
+                
+            };
+
             ///打API
             return httpHelper.PostData<ProductFormSpecResponse, ProductFormSpecRequest>
                 ($"{targetUrl}{CommonStr.Product.InsertProductFormSpec}"

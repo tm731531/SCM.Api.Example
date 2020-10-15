@@ -60,7 +60,12 @@ namespace SCM.Api.Example.Service
             ///設定Token
             keyValuePairs[CommonStr.Header.auth] = $"{getTokenResponse.data.token_type} {getTokenResponse.data.access_token}";
             ///塞入資料
-            ProductSpecQuyery productSpecQuyery = new ProductSpecQuyery();
+            ProductSpecQuyery productSpecQuyery = new ProductSpecQuyery()
+            {
+                specType = 1,
+                productSpecFormID = new List<int>() { 14 },
+                formerSaleCode = new List<string>()
+            };
             ///打API
             return httpHelper.PostData<ProductSpecResponse, ProductSpecQuyery>
                 ($"{targetUrl}{CommonStr.Product.ProductSpecCacheLookup}"
